@@ -39,7 +39,7 @@ Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to);
 
 Vector3 Cross(const Vector3& from, const Vector3& to);
 
-float Dot(const Vector3& from, const Vector3& to);
+float Dot(const Quaternion& from, const Quaternion& to);
 
 float Length(Vector3 Cross);
 

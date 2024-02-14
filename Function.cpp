@@ -157,9 +157,9 @@ Vector3 Normalize(Vector3 V1)
 	return result;
 }
 
-Matrix4x4  DirectionToDirection(const Vector3& from, const Vector3& to)
-{
-	Matrix4x4 result = {};
+//Matrix4x4  DirectionToDirection(const Vector3& from, const Vector3& to)
+//{
+	/*Matrix4x4 result = {};
 	Vector3 cross = Cross(from, to);
 	float cos = Dot(from, to);
 	float sin = Length(cross);
@@ -211,8 +211,8 @@ Matrix4x4  DirectionToDirection(const Vector3& from, const Vector3& to)
 	resultR.m[3][2] = 0.0f;
 	resultR.m[3][3] = 1.0f;
 
-	return resultR;
-}
+	return resultR;*/
+//}
 
 		
 	
@@ -238,8 +238,7 @@ Vector3 Cross(const Vector3& from, const Vector3& to)
 }
 
 
-
-float Dot(const Vector3& from, const Vector3& to)
+ float Dot(const Quaternion& from, const Quaternion& to)
 {
 
 	/*Vector3  result;

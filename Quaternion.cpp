@@ -1,4 +1,4 @@
-#include "Quaternion.h"
+﻿#include "Quaternion.h"
 
 
 
@@ -70,4 +70,36 @@ Vector3 Quatrnion::Transform(const Vector3& vector, const Quaternion& quaternion
 
     return Vector3(result.x, result.y, result.z);
 }
+
+Quaternion Quatrnion::Slerp(const Quaternion& q1, const Quaternion& q2, float t)
+{
+
+    // クォータニオンの内積を計算
+    float dot = Dot(q1, q2);
+    Quaternion qn1 = q1;//q1のnew
+    Quaternion qn2 = q2;//q2のnew
+    if (dot < 0.0f)
+    {
+        qn1 = { -qn1.x,-qn1.y,-qn1.z,-qn1.w };
+        dot = -dot;
+    }
+
+    // q1とq2の間の角度を計算
+    float theta = std::acos(dot);
+
+    float sinTheta = std::sin(theta);
+    float scale0 = std::sin((1 - t) * theta) / sinTheta;
+    float scale1 = std::sin(t * theta) / sinTheta;
+
+    // 補間されたクォータニオンを計算して返す
+    return Quaternion(
+        scale0 * qn1.x + scale1 * qn2.x,
+        scale0 * qn1.y + scale1 * qn2.y,
+        scale0 * qn1.z + scale1 * qn2.z,
+        scale0 * qn1.w + scale1 * qn2.w
+    );
+
+}
+
+
     

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"Function.h"
 
 class Quatrnion
@@ -12,6 +12,9 @@ public:
 	Matrix4x4 MakeRotatematrix(const Quaternion& quaterninon);
 
 	Vector3 Transform(const Vector3& vector, const Quaternion& quaternion);
+
+	Quaternion Slerp(const Quaternion& q1, const Quaternion& q2, float t);
+
 };
 
 
