@@ -39,10 +39,11 @@ float Norm(const Quaternion& quaternion)
 {
 	float result = 0.0f;
 	result = sqrtf(
-		quaternion.w * quaternion.w +
+		
 		quaternion.x * quaternion.x +
 		quaternion.y * quaternion.y +
-		quaternion.z * quaternion.z);
+		quaternion.z * quaternion.z +
+		quaternion.w * quaternion.w );
 
 	return result;
 }

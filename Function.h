@@ -10,7 +10,6 @@
 #include <imgui.h>
 
 
-
 struct Quaternion
 {
 	float x;
@@ -18,6 +17,7 @@ struct Quaternion
 	float z;
 	float w;
 };
+
 
 Quaternion Multiply(const Quaternion& lhs , const Quaternion& rhs );
 
