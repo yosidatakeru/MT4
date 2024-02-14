@@ -2,6 +2,112 @@
 #include<assert.h>
 
 
+Quaternion Multiply(const Quaternion& lhs, const Quaternion& rhs)
+{ 
+	
+	Quaternion result = {
+	 
+	  lhs.w * rhs.x + lhs.x * rhs.w + lhs.y * rhs.z - lhs.z * rhs.y,
+	  lhs.w * rhs.y - lhs.x * rhs.z + lhs.y * rhs.w + lhs.z * rhs.x,
+	  lhs.w * rhs.z + lhs.x * rhs.y - lhs.y * rhs.x + lhs.z * rhs.w,
+	  lhs.w* rhs.w - lhs.x * rhs.x - lhs.y * rhs.y - lhs.z * rhs.z,
+	};
+	
+	 return result ;
+}
+
+
+
+
+Quaternion IdentiyQuaternion()
+{
+	Quaternion result = { 0.0f, 0.0f, 0.0f, 0.1f };
+	return result;
+}
+
+
+
+Quaternion Conjugate(const Quaternion& quaternion)
+{
+	Quaternion result = {-quaternion.x, -quaternion.y, -quaternion.z, quaternion.w };
+	return result;
+}
+
+
+
+float Norm(const Quaternion& quaternion)
+{
+	float result = 0.0f;
+	result = sqrtf(
+		quaternion.w * quaternion.w +
+		quaternion.x * quaternion.x +
+		quaternion.y * quaternion.y +
+		quaternion.z * quaternion.z);
+
+	return result;
+}
+
+Quaternion Normalize(const Quaternion& quaternion)
+{
+	Quaternion result = {};
+
+
+	float length = sqrtf(
+		quaternion.w * quaternion.w +
+		quaternion.x * quaternion.x +
+		quaternion.y * quaternion.y +
+		quaternion.z * quaternion.z);
+
+
+
+	Quaternion preResult = {};
+	preResult.x = quaternion.x;
+	preResult.y = quaternion.y;
+	preResult.z = quaternion.z;
+	preResult.w = quaternion.w;
+
+	if (length != 0.0f) {
+		preResult.x = quaternion.x / length;
+		preResult.y = quaternion.y / length;
+		preResult.z = quaternion.z / length;
+		preResult.w = quaternion.w / length;
+
+	}
+
+	result.x = preResult.x;
+	result.y = preResult.y;
+	result.z = preResult.z;
+	result.w = preResult.w;
+
+
+	return result;
+}
+
+Quaternion Inverse(const Quaternion& quaternion)
+{
+	Quaternion result = {};
+
+
+	float norm = Norm(quaternion);
+	Quaternion conjugate = Conjugate(quaternion);
+
+	float t = norm * norm;
+
+	result.x = conjugate.x / t;
+	result.y = conjugate.y / t;
+	result.z = conjugate.z / t;
+	result.w = conjugate.w / t;
+
+
+	return result;
+}
+
+
+
+
+
+
+
 Matrix4x4 MakeRotateAxisAngle(const Vector3& axis, float angle)
 {
 	Matrix4x4 result{};
